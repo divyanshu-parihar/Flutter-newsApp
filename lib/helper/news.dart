@@ -7,12 +7,12 @@ class News {
 
   Future<void> getPost() async {
     String url =
-        "http://newsapi.org/v2/top-headlines?country=in&excludeDomains=stackoverflow.com&sortBy=publishedAt&language=en&apiKey=bcf6a65e22e24c81ba6d3a50821df367";
+        "http://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=<api_key>";
     var response = await http.get(url);
     var jsonData = jsonDecode(response.body);
     if (jsonData['status'] == 'ok') {
       jsonData['articles'].forEach((element) {
-        if (jsonData['urlToImage' != null] && element['description'] != null) {
+        if (element['urlToImage'] != null && element['description'] != null) {
           ArticleModel article = ArticleModel(
             title: element['title'],
             author: element['author'],
